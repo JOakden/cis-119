@@ -1,0 +1,345 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jul 29 02:52:41 2024
+
+@author: jacoboakden
+"""
+
+    
+#%%
+import random as r
+def menu():
+    print("________________________________________")
+    print("|                                      |")
+    print("| Hello this is the programs main menu |")
+    print("|______________________________________|")
+
+
+    print('\nOptions: \nShapes: 1\nrandom: 2\nCalculators: 3\nStrings: 4\nTo leave: 0')
+    option = input('Your Choice:')
+    
+    if option == "0":
+        end(menu)
+    elif option =="1":
+        Shapeg()
+    elif option == "2":
+        randg()
+    elif option =="3":
+        calculators()
+    elif option =="4":
+        string()
+        
+    else:
+        print('\ninvalid response')
+        menu()
+        
+def end(lastprogram):
+    print("\n______________________________")
+    print('|                             |')
+    print("|Hello, this is the End Screen|")
+    print("|_____________________________|\n")
+    print("to return back to the program press: 1\nTo return to the main menu press: 2\nTo leave press: 0\n")
+    endopt = input("choose: ")
+    
+    if endopt == "1":
+        print("")
+        lastprogram()
+    
+    elif endopt =="2":
+        return menu()
+   
+    elif endopt == "0":
+        quit()
+    else:
+        print(f'invalid, you inputed {endopt}, please input any of the listed options')
+        
+    
+        return end(lastprogram)
+    
+def Shapeg():
+    print('\nHello this is the submenu for Shape games\n')
+    print('options for structure games are\nStar matrix: 1\nStar pyramid: 2\nHill and Valley: 3\nFor the main menu: 4\nTo leave: 0')
+    schoice = input('your input: ')
+    if schoice == "1":
+        starA()
+    elif schoice =="2":
+        starP()
+    elif schoice =="3":
+        NumMandV()
+    elif schoice == "4":
+        menu()
+    elif schoice =="0":
+        end(Shapeg)
+    else:
+        print('invalid')
+        Shapeg()
+
+def starA():
+    n = int(input("\nenter an value that will be used for stars: "))
+    stars = n * n
+    
+    for num in range(1,n+1):
+        for row in range(n):
+            print("*", end='')
+        print(num)
+    print("Total number of stars: ",stars)
+    end(starA)    
+    
+def starP():
+    n = int(input('enter how many stars youd like to go to: '))
+    
+    for row in range(1,n):
+        
+        upstar = row*"*"
+        print(upstar,row)      
+    for row in range(n , 0, -1):
+        downstar =row * "*"
+        print(downstar,row)
+    end(starP)
+ 
+    
+def NumMandV():
+    n = int(input('enter how many stars youd like to go to: '))
+    print('part 1')
+    for row in range(1, n+1):
+    
+        upstar = row*str(row)
+        print(upstar,row)      
+    for row in range(n - 1, 0, -1):
+        downstar =row * str(row)
+        print(downstar,row)
+    print('part 2')
+    for row in range(n, 0, -1):
+        downstar =row * str(row)
+        print(downstar,row)
+    for row in range(1,n+1):
+        
+        upstar = row*str(row)
+        print(upstar,row)
+    end(NumMandV)       
+        
+    
+def randg():
+    print('\nHello this is the random game submenu')
+    print('options:\nCoin toss: 1\nRandom number: 2\nTo main menu: 3\nTo leave: 0')
+    n = input('Your choice: ')
+    if n =="1": #random
+        Coints()
+    elif n =="2":
+        RNG()
+    elif n == "3":
+        menu()
+    elif n == "0":
+        end(randg)
+        
+def Coints():
+    
+    n = r.randint(1,2)
+    HoT = input('\nguess heads = 1, tails = 2, or to exit press 0: ')
+    try:
+            HoT = int(HoT)
+    except ValueError:
+        print("Invalid input. Please only input 1, 2, or 0.")
+        return Coints()
+        
+
+    if HoT == n:
+        print('Congradulations, you guessed right!')
+    elif HoT == 0:
+        return end(Coints)
+    elif HoT == 1 or 2:   
+        print('Try again')
+    else: 
+        print('invalid')
+    
+    end(Coints)
+
+def RNG():
+        
+    print('Guess the number')
+    n = r.randint(1,10)
+    numb = int(input('choose a number 1-10: '))
+    x=1
+    if n> numb:
+       print('you underestimated')
+    elif n<numb:
+       print('you overestimated')
+    elif n==numb:
+        print('Congrats! you got the correct number!') 
+       
+    while numb != n:
+        numb = int(input('choose a number from 1-10: '))
+        x+=1
+        
+
+        if n> numb:
+            print('you underestimated')
+        elif n<numb:
+            print('you overestimated')
+    
+
+        
+    print('the actual value was',n)
+    print(f'it took you {x} amount of attempts to guess it')
+    
+    end(RNG)
+
+def calculators():
+    print('\nHello this is the calculator submenu\n')
+    print("Options:\nTable multiplier: 1\nCalorie calculator: 2\nTicket price calc: 3\nTo the main menu: 4\nTo leave: 0\n")
+    n = input("your choice: ")
+    if n =="1":
+        tmult()
+    elif n == "2":
+        CalCalc()
+    elif n == "3":
+        tickets()
+    elif n == "4":
+        menu()
+    elif n =="0":
+        end(calculators)
+    else:
+        print('inproper input')
+        calculators()
+def tmult():
+    print('\nHello this will be table of multiplication')
+    print('\nwould you like to use the multiplication table a multiplication calculator\n')
+    choice = input('1-calc,2-table,0-leave: ')
+    if choice == "1":#                                              At first i though that this is what the question was asking
+        print("\n\nhello this is a multiplication calculator")#     but then i checked and since i already added it i kept it in so you 
+                                                                #   can choose
+        choice = int(input('\nhow many equations do we want: '))
+        for i in range(choice):
+            fnum = float(input('\n\nplease input the first integer: '))
+            snum = float(input("please input a second integer: "))
+            productnum = fnum*snum
+            print(f'\n { fnum } * { snum } = { productnum }\n')
+            print('')
+            
+            
+        
+    elif choice =="2":
+        print("Hello this is the multiplication table\n")
+        tby = int(input("how many equations would you like? "))
+        ttoo = int(input("what would you like each value to be multiplied by? "))
+        
+        for i in range(1,tby+1):
+            print(f'{ i }*{ ttoo }={ i*ttoo }')
+        
+        
+    
+    end(tmult)
+def CalCalc():
+    print('\nHello this is a Calorie burner caclulator\n')
+    name = input("please enter your family name: ") 
+    
+    gender = input('What is your gender? m/f or 0 to leave ')
+    print("\n")
+    if gender == "f":
+        print(f'hello miss { name}')
+    elif gender == "m":
+        print(f'Hello mister {name}')
+    elif gender =="0":
+        end(CalCalc)
+    else:
+        print('invalid')
+        CalCalc()
+    weight = int(input("first what is your weight: "))
+    print('\nwould you like to calculate miles to calories you lost input 1\nwould you like to calculate number of calories youd like to lose to miles input 2\n and to leave input 0\n')
+    choice = input('Your choice: ')
+    if choice == "1":
+        miles = int(input('How many miles did you run? '))
+        calories =miles * weight * .653
+        print('you lost',"%.2f" % calories, 'calories') # got this trick from  stackoverflow
+    elif choice == "2":
+        cal = int(input('what is your desired calorie loss: '))
+        miles = cal/(weight*.653)
+        if miles < 1:
+            feet=miles * 5280
+            print(f'you will have to run  {int(feet)} feet to lose {cal} calories')
+        elif miles >1:
+            print(f'you will have to run around {int(miles)} miles to lose {cal} calories')
+    else:
+        print('invalid')
+        CalCalc()
+    
+    
+    end(CalCalc)
+
+def tickets():
+    n = int(input('how many costumers there are would you like to calculate \nAmount: '))
+    numbers = []
+    for i in range(1,n+1):
+        
+        number = int(input(f'Input hours for customer {i}: '))
+        if number == 1:
+            ticket = 3
+        else:
+            ticket = number + 3
+        print('price of ticket will be $',ticket,"\n")
+        numbers.append(ticket)
+    
+    ticketsum = sum(numbers)
+    print('\nTotal for all tickets  is $',ticketsum,"\n")
+    end(tickets)
+
+def string():
+    print('\nHello this is the string test submenu')
+    print('Options:\nString sorter: 1\nPalendromes: 2\nmain menu: 3\nTo leave: 0\n')
+    n = input('your input')
+    
+    if n == '1':
+        stringS()
+    elif n =="2":
+        palindrome()
+    elif n =="3":
+        menu()
+    elif n =="0":
+        end(string)
+def stringS():
+    print('Hello this will be a string sorter\nplease input any alphanumeric charecter')
+    print('the only invalid string you can input is if you input END, if you input end, and End, \nor any other variation will be added to the list \n')
+    
+    SList = []
+    
+    while True:
+        string = input("input: ")
+        if string == "END":
+            break
+        
+        SList.append(string)
+        
+ 
+    print(SList)
+    SList.sort()
+    for i in sorted(SList):
+        print(i)
+    end(stringS)
+
+def palindrome():
+    print('\nHello this is your Palindrome checker\n')
+    pal = input("please inter your palindrome: ")
+    print('')
+    print(f'{pal} reversed is {pal[::-1]}\n')
+    if pal =="" or pal ==" ":
+        print('you gave an invalid response, try again')
+        palindrome()
+    elif pal == pal[::-1]:
+        print(f'{pal} is a palindrome')
+    elif pal != pal[::-1]:
+        print(f'{pal} is not a palindrome')
+    end(palindrome)
+    
+if __name__ == "__main__":
+    menu()   
+      
+"""
+Student: Jacob Oakden
+
+Instructor: Kaleab Gorfu
+
+CS 119 
+
+"""
+ 
